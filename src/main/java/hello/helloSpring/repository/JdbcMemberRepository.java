@@ -21,10 +21,10 @@ public class JdbcMemberRepository implements MemberRepository {
         String sql = "insert into member(name) values(?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        ResultSet rs = null; // 결과를 받습니다.
         try {
             conn = getConnection();
-            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // 테이블 튜플들의 key 값
             pstmt.setString(1, member.getName());
             pstmt.executeUpdate();
             rs = pstmt.getGeneratedKeys();
@@ -57,8 +57,8 @@ public class JdbcMemberRepository implements MemberRepository {
             if (rs.next()) {
                 Member member = new Member();
                 member.setId(rs.getLong("id"));
-                member.setName(rs.getString("name"));
-                return Optional.of(member);
+                member.setName(rs.getString("name")); // member 객체 만든뒤에
+                return Optional.of(member); // 반환
             } else {
                 return Optional.empty();
             }
