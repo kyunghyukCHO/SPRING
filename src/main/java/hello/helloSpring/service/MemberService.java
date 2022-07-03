@@ -5,6 +5,7 @@ import hello.helloSpring.repository.MemberRepository;
 import hello.helloSpring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 // 컴포넌트 스캔과 자동 의존관계 설정 @Service and @Autowired
 // -> 패키지를 포함하여 하위 패키지들에 국한하여 적용
 // @Service
+@Transactional
 public class MemberService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
     private final MemberRepository memberRepository;
